@@ -79,6 +79,7 @@ void setup() {
 }
 
 void loop() {
+  display.clearDisplay();
  temperature = read_temperature(ADDRESS);
  humidity = read_humidity(ADDRESS);
  if (humidity > 60){
@@ -89,17 +90,21 @@ void loop() {
 
 printText();
 
-delay(1000);
  
+delay(1000);
 }
 
 void printTable(){
-  
+  display.drawLine(0, 0, 0, 63, WHITE);
+  display.drawLine(55, 0, 55, 63, WHITE);
+  display.drawLine(127, 0, 127, 63, WHITE);
+  display.drawLine(0, 0, 127, 0, WHITE);
+  display.drawLine(0, 15, 127, 15, WHITE);
+  display.drawLine(0, 63, 127, 63, WHITE);
   display.display();
 }
 
 void printText(){
-  display.clearDisplay();
   display.setTextSize(1.5);
   display.setTextColor(WHITE);  
   display.setCursor(7,4);
@@ -115,12 +120,7 @@ void printText(){
   display.print((int)humidity);
   display.setCursor(38, 30);
   display.print("%");  
-  display.drawLine(0, 0, 0, 63, WHITE);
-  display.drawLine(55, 0, 55, 63, WHITE);
-  display.drawLine(127, 0, 127, 63, WHITE);
-  display.drawLine(0, 0, 127, 0, WHITE);
-  display.drawLine(0, 15, 127, 15, WHITE);
-  display.drawLine(0, 63, 127, 63, WHITE);
+//printTable();
   display.display();
 }
 
